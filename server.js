@@ -15,7 +15,7 @@ server.use(helmet());
 server.use(sillyMiddleware);
 server.use(addTeam);
 server.use(logger);
-server.use(auth);
+server.use(auth('eu1'));
 
 server.use('/api/hubs', hubsRouter);
 

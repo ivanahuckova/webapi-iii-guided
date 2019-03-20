@@ -21,12 +21,14 @@ function logger(req, res, next) {
   next();
 }
 
-function auth(req, res, next) {
-  if (req.headers.auth === 'eu1') {
-    next();
-  } else {
-    res.status(404).json({ error: 'You need to be authorized' });
-  }
+function auth(password) {
+  return function(req, res, next) {
+    if (req.headers.auth === 'eu1' || password === 'eu1') {
+      next();
+    } else {
+      res.status(401).json({ error: 'You need to be authorized' });
+    }
+  };
 }
 
 module.exports = {
