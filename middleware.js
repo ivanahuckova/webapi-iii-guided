@@ -23,7 +23,7 @@ function logger(req, res, next) {
 
 function auth(password) {
   return function(req, res, next) {
-    if (req.headers.auth === 'eu1' || password === 'eu1') {
+    if (req.headers.auth === password) {
       next();
     } else {
       res.status(401).json({ error: 'You need to be authorized' });
